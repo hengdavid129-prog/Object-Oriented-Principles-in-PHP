@@ -1,33 +1,76 @@
 <?php
 
-class Notification
+// Inheritance
+
+// class Notification
+// {
+//     public function __construct(public string $message)
+//     {
+//         //
+//     }
+
+//     public function send()
+//     {
+//         echo 'Show popup flash message';
+//     }
+// }
+
+// class EmailNotification extends Notification
+// {
+//     public function send()
+//     {
+//         echo 'Fire off and email notification';
+//     }
+// }
+
+// class OSNotification extends Notification
+// {
+//     public function send()
+//     {
+//         echo 'Dispatch an OS-specific notification.';
+//     }
+// }
+
+// $notificaton = new EmailNotification('here is my notification');
+// $notificaton->send();
+
+// Abstract Classes
+
+class User {}
+
+abstract class Achievement
 {
-    public function __construct(public string $message)
-    {
+    public function __construct(
+        public string $name,
+        public string $description,
+        public string $icon
+    ) {
         //
     }
 
-    public function send()
-    {
-        echo 'Show popup flash message';
-    }
+    abstract public function qualifier(User $user);
 }
 
-class EmailNotification extends Notification
+class FirstPostAchievment extends Achievement
 {
-    public function send()
+    public function qualifier(User $user)
     {
-        echo 'Fire off and email notification';
+        // TODO: Implement qualifier() method.
     }
 }
 
-class OSNotification extends Notification
+class TalkativeAchievment extends Achievement
 {
-    public function send()
+    public function qualifier(User $user)
     {
-        echo 'Dispatch an OS-specific notification.';
+        // $user->comments()->count() >= 200;
     }
 }
 
-$notificaton = new EmailNotification('here is my notification');
-$notificaton->send();
+$firstPost = new FirstPostAchievment(
+    'First Post',
+    'Granted when you create your first post.',
+    'first-post.svg'
+);
+
+echo $firstPost->qualifier(new User) ? 'They qualify' : 'They do not qualify';
