@@ -17,3 +17,6 @@ Public properties tie you to a specific implementation,
 
 When you hide internals by using those visibily keywords like public protected private, when you hide internals you are better protecting
 the consistency and intergrity of your objects.
+
+composition refers to combining various types to build up more complex behavior.
+Object composition is simply when one object or class has a pointer to another class.
